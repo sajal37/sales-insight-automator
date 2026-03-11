@@ -2,7 +2,7 @@
 
 > **Upload sales data. Get an AI-generated executive brief. Delivered to your inbox in seconds.**
 
-[![CI Pipeline](https://github.com/YOUR_USERNAME/sales-insight-automator/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/sales-insight-automator/actions)
+[![CI Pipeline](https://github.com/sajal37/sales-insight-automator/actions/workflows/ci.yml/badge.svg)](https://github.com/sajal37/sales-insight-automator/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ---
@@ -125,7 +125,7 @@ Built as a containerized, production-ready prototype for the Rabbitt AI sales te
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/sales-insight-automator.git
+git clone https://github.com/sajal37/sales-insight-automator.git
 cd sales-insight-automator
 
 # 2. Create environment files from templates
