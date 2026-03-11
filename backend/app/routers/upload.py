@@ -110,7 +110,7 @@ async def send_email(
         )
     except Exception as exc:
         logger.exception("Email send failed")
-        raise HTTPException(status_code=502, detail="Failed to send email. Please check your email configuration.")
+        raise HTTPException(status_code=502, detail=f"Failed to send email: {exc}")
 
 
 @router.post(
@@ -223,9 +223,9 @@ async def _sse_pipeline(content: bytes, filename: str, to_email: str, subject: s
         result = await send_summary_email(to_email, summary, subject)
         email_id = result.get("id") if isinstance(result, dict) else getattr(result, "id", None)
         yield _event("sending", "complete", {"email_id": email_id})
-    except Exception:
+    except Exception as exc:
         logger.exception("Email failed in SSE pipeline")
-        yield _event("sending", "error", {"detail": "Email delivery failed"})
+        yield _event("sending", "error", {"detail": f"Email delivery failed: {exc}"})
         return
 
     yield _event("done", "complete")
