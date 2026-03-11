@@ -5,6 +5,9 @@
 [![CI Pipeline](https://github.com/sajal37/sales-insight-automator/actions/workflows/ci.yml/badge.svg)](https://github.com/sajal37/sales-insight-automator/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+🌐 **Live Frontend:** https://sales-insight-automator-red.vercel.app  
+📡 **Live API / Swagger:** https://sales-insight-automator-ds0d.onrender.com/docs
+
 ---
 
 ## 📋 Table of Contents
@@ -264,6 +267,12 @@ Backend CI                    Frontend CI
 
 ## Deployment
 
+| Service | Platform | Live URL |
+|---------|----------|---------|
+| Frontend | Vercel | https://sales-insight-automator-red.vercel.app |
+| Backend API | Render | https://sales-insight-automator-ds0d.onrender.com |
+| Swagger Docs | Render | https://sales-insight-automator-ds0d.onrender.com/docs |
+
 ### Frontend → Vercel
 
 1. Push to GitHub
@@ -276,11 +285,9 @@ Backend CI                    Frontend CI
 
 1. Push to GitHub
 2. Create a new Web Service in [render.com](https://render.com)
-3. Set root directory to `backend`
-4. Set build command: `pip install -r requirements.txt`
-5. Set start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-6. Add all environment variables from `.env.example`
-7. Deploy
+3. Set root directory to `backend`, runtime: **Docker**
+4. Add all environment variables from `.env.example`
+5. Deploy
 
 ---
 
