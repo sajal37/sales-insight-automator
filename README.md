@@ -81,7 +81,7 @@ Built as a containerized, production-ready prototype for the Rabbitt AI sales te
 - ✅ CSV & XLSX file upload with client-side validation
 - ✅ Magic-byte file type detection (not just extension checking)
 - ✅ Pre-computed statistics via Pandas (revenue, units, trends, outliers)
-- ✅ AI executive brief generation (Gemini 1.5 Flash / Groq Llama 3)
+- ✅ AI executive brief generation (Gemini 2.0 Flash / Groq Llama 3.3 70B)
 - ✅ Branded HTML email delivery via Resend
 - ✅ Swagger + ReDoc API documentation
 
@@ -267,11 +267,11 @@ Backend CI                    Frontend CI
 
 ## Deployment
 
-| Service | Platform | Live URL |
-|---------|----------|---------|
-| Frontend | Vercel | https://sales-insight-automator-red.vercel.app |
-| Backend API | Render | https://sales-insight-automator-ds0d.onrender.com |
-| Swagger Docs | Render | https://sales-insight-automator-ds0d.onrender.com/docs |
+| Service      | Platform | Live URL                                               |
+| ------------ | -------- | ------------------------------------------------------ |
+| Frontend     | Vercel   | https://sales-insight-automator-red.vercel.app         |
+| Backend API  | Render   | https://sales-insight-automator-ds0d.onrender.com      |
+| Swagger Docs | Render   | https://sales-insight-automator-ds0d.onrender.com/docs |
 
 ### Frontend → Vercel
 
@@ -382,9 +382,9 @@ sales-insight-automator/
 
 | Layer          | Technology                                     |
 | -------------- | ---------------------------------------------- |
-| **Frontend**   | Next.js 14, React 18, TypeScript, Tailwind CSS |
-| **Backend**    | FastAPI, Python 3.12, Pydantic v2              |
-| **AI**         | Google Gemini 1.5 Flash / Groq Llama 3.1 70B   |
+| **Frontend**   | Next.js 15, React 18, TypeScript, Tailwind CSS |
+| **Backend**    | FastAPI, Python 3.12+, Pydantic v2             |
+| **AI**         | Google Gemini 2.0 Flash / Groq Llama 3.3 70B   |
 | **Email**      | Resend API                                     |
 | **Data**       | Pandas, openpyxl                               |
 | **Auth**       | API Key (X-API-Key header)                     |
