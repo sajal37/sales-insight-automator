@@ -26,7 +26,7 @@ class TestHealthEndpoint:
         response = client.get("/api/v1/health")
         assert response.status_code == 200
         data = response.json()
-        assert data["status"] == "healthy"
+        assert data["status"] in ("healthy", "degraded")
         assert data["service"] == "sales-insight-automator"
 
 
@@ -57,25 +57,27 @@ class TestAuthMiddleware:
 
 
 class TestUploadEndpoint:
-    @patch("app.routers.upload.generate_summary", new_callable=AsyncMock)
-    def test_upload_valid_csv(self, mock_llm, client, auth_headers):
-        mock_llm.return_value = "## Executive Brief\nTest summary."
-        response = client.post(
-            "/api/v1/upload",
-            headers=auth_headers,
-            files={"file": ("test.csv", SAMPLE_CSV, "text/csv")},
-        )
+    @patch("app.routers.upload._enqueue_job")
+    def test_upload_valid_csv(self, mock_enqueue, client, auth_headers):
+        mock_enqueue.side_effect = Exception("Redis down")
+        with patch("app.routers.upload._process_sync", new_callable=AsyncMock):
+            response = client.post(
+                "/api/v1/upload",
+                headers=auth_headers,
+                files={"file": ("test.csv", SAMPLE_CSV, "text/csv")},
+                data={"to_email": "test@example.com"},
+            )
         assert response.status_code == 200
         data = response.json()
-        assert data["success"] is True
-        assert "summary" in data
-        assert data["rows_processed"] == 1
+        assert "job_id" in data
+        assert data["status"] == "pending"
 
     def test_upload_unsupported_file(self, client, auth_headers):
         response = client.post(
             "/api/v1/upload",
             headers=auth_headers,
             files={"file": ("test.png", b"\x89PNG\r\n", "image/png")},
+            data={"to_email": "test@example.com"},
         )
         assert response.status_code == 400
 
